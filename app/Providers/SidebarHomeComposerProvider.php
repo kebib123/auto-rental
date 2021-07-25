@@ -27,6 +27,6 @@ class SidebarHomeComposerProvider extends ServiceProvider
     }
 
     public function composeSidebarHome(){
-          view()->composer('themes.default.frontpage','App\Http\ViewComposers\SidebarHomeComposer');
+          view()->composer('themes.default.common.sidebar','App\Http\ViewComposers\SidebarHomeComposer');
     }
 }

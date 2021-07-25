@@ -6,16 +6,16 @@
 @section('content')
 
 <form class="form-horizontal" role="form" action="{{ url('admin/banner', $data->id) }}" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}   
-<input type="hidden" name="_method" value="PUT" />          
+            {{ csrf_field() }}
+<input type="hidden" name="_method" value="PUT" />
 <div class="col-md-12">
             <!-- Input Fields -->
             <div class="panel">
               <div class="panel-heading">
                 <span class="panel-title">Edit Banner or Popup</span>
               </div>
-              <div class="panel-body"> 
-             
+              <div class="panel-body">
+
                   <div class="form-group">
                     <label for="inputStandard" class="col-lg-3 control-label">Title</label>
                     <div class="col-lg-6">
@@ -35,14 +35,14 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="col-lg-3 control-label" for="videolink">Caption2</label>
+                    <label class="col-lg-3 control-label" for="videolink">Banner Link</label>
                     <div class="col-lg-6">
                       <div class="bs-component">
-                        <input type="text" class="form-control" name="video" value="{{$data->video}}" /> <br />                       
+                        <input type="text" class="form-control" name="video" value="{{$data->video}}" /> <br />
                       </div>
                     </div>
-                  </div> 
-               
+                  </div>
+
                   <div class="form-group">
                     <label class="col-lg-3 control-label" for="textArea2">Content</label>
                     <div class="col-lg-6">
@@ -50,8 +50,8 @@
                         <textarea class="form-control my-editor" id="textArea2" name="content" rows="3">{{$data->content }}</textarea>
                       </div>
                     </div>
-                  </div>                 
-                  
+                  </div>
+
                <div class="form-group">
                     <label class="col-lg-3 control-label" for="banner">Picture</label>
                     <div class="col-lg-6">
@@ -60,7 +60,7 @@
                       </div> <br />
                        ( Width: 1900px, Height:560px all time fix size )
                     </div>
-                    
+
                   </div>
 
                   @if($data->picture != '' OR $data->picture != null)
@@ -71,17 +71,17 @@
                         <img src="{{url(env('PUBLIC_PATH').'uploads/banners/' . $data->picture )}}" width="70%" />
                       </div>
                     </div>
-                  </div>                    
+                  </div>
                   @endif
 
                    <div class="form-group">
                     <label class="col-lg-3 control-label" for="link">Link Title</label>
                     <div class="col-lg-6">
                       <div class="bs-component">
-                        <input type="text" class="form-control" name="link_title" value="{{$data->link_title}}" placeholder="Link Title" /> <br />                       
+                        <input type="text" class="form-control" name="link_title" value="{{$data->link_title}}" placeholder="Link Title" /> <br />
                       </div>
                     </div>
-                  </div> 
+                  </div>
 
                  <div class="form-group">
                     <label class="col-lg-3 control-label" for="link">VideoLink</label>
@@ -90,12 +90,12 @@
                         <input type="text" class="form-control" name="link" value="{{$data->link}}" placeholder="http://www.google.com" /> <br />
                           <i><small> Example: https://www.google.com </small></i>
                       </div>
-                      
-                    </div>
-                  </div> 
 
-                  
-                 
+                    </div>
+                  </div>
+
+
+
                   <div class="form-group">
                     <label class="col-lg-3 control-label" for=""></label>
                     <div class="col-lg-6">
@@ -103,12 +103,12 @@
                         <input type="submit" class="form-control btn btn-primary" name="submit" value="Submit" />
                       </div>
                     </div>
-                  </div> 
-                
+                  </div>
+
               </div>
-            </div>          
+            </div>
           </div>
 
-          
+
           </form>
 @endsection

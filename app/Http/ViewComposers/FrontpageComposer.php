@@ -33,7 +33,6 @@ class FrontpageComposer{
             ->get());
 
 
-
 	}
 
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Appointment;
 use App\Model\Booking;
 use App\Model\Contact;
 use App\Model\Inquiry;
+use App\Model\Proposal;
 use App\Model\TripBooking;
 use Illuminate\Http\Request;
 use App\Models\Posts\PostModel;
@@ -63,7 +65,7 @@ class   DashboardController extends Controller
     public function contact_us(Request $request)
     {
         $data=Contact::all();
-        return view('admin.booking.contact',compact('data'));
+        return view('admin.contact.index',compact('data'));
     }
 
     public function trip_booking_delete(Request $request)
@@ -99,6 +101,21 @@ class   DashboardController extends Controller
         if ($id->delete())
         {
             return back()->with('success','Contact deleted');
+        }
+    }
+
+    public function proposal_request()
+    {
+        $data=Appointment::all();
+        return view('admin.proposal.index',compact('data'));
+    }
+
+    public function proposal_delete(Request $request)
+    {
+        $id=Proposal::findorfail($request->id);
+        if ($id->delete())
+        {
+            return back()->with('success','Proposal deleted');
         }
     }
 }

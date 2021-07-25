@@ -28,5 +28,11 @@ class FooterComposer{
 
         $view->with('settings',SettingModel::where(['id'=>'1'])
             ->first());
+        $view->with('hospital',PostModel::where(['post_type'=>'2'])
+            ->get());
+        $view->with('media',PostModel::where(['post_type'=>'5','post_parent'=>0])
+            ->get());
+        $view->with('service',PostModel::where('post_type','3')->where('post_parent','!=',0)
+            ->get());
 		}
 }

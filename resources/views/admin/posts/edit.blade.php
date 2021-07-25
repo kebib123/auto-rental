@@ -6,17 +6,17 @@
 @endsection
 @section('content')
 <form class="form-horizontal" role="form" action="{{ url('admin/'.Request::segment(2).'/'.$data->id) }}" method="post" enctype="multipart/form-data">
-  {{ csrf_field() }}  
-  <input type="hidden" name="_method" value="PUT" />  
-  <input type="hidden" name="post_type" value="{{ Request::segment(2) }}" /> 
-  <input type="hidden" name="post_date" value="<?=date('Y-m-d h:i:s')?>" />                             
+  {{ csrf_field() }}
+  <input type="hidden" name="_method" value="PUT" />
+  <input type="hidden" name="post_type" value="{{ Request::segment(2) }}" />
+  <input type="hidden" name="post_date" value="<?=date('Y-m-d h:i:s')?>" />
   <div class="col-md-9">
     <!-- Input Fields -->
     <div class="panel">
       <div class="panel-heading">
         <span class="panel-title">Edit Post</span>
       </div>
-      <div class="panel-body">                  
+      <div class="panel-body">
         <div class="form-group">
           <label for="inputStandard" class="col-lg-2 control-label">Title</label>
           <div class="col-lg-9">
@@ -65,13 +65,13 @@
                 @if($category)
                 @foreach($category as $row)
                 <option value="{{$row->id}}" {{ ($row->id == $data->post_category )?'selected':'' }}> {{$row->category}}</option>
-                @endforeach  
-                @endif 
+                @endforeach
+                @endif
               </select>
               <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div></div>
             </div>
           </div>
-        
+
         @if($parent_post->count() > 0)
           <div class="form-group">
             <label for="inputSelect" class="col-lg-2 control-label">Select Parent</label>
@@ -106,7 +106,7 @@
                 <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div></div>
               </div>
             </div>
-            @endif            
+            @endif
 
             <div class="form-group">
               <label class="col-lg-2 control-label" for="textArea3"> Brief </label>
@@ -142,7 +142,7 @@
                   <textarea class="form-control" id="" name="meta_description" rows="3">{{$data->meta_description}}</textarea>
                 </div>
               </div>
-            </div>              
+            </div>
 
             <div class="form-group">
               <label for="inputStandard" class="col-lg-2 control-label"> External Link </label>
@@ -154,16 +154,16 @@
             </div>
 
           </div>
-        </div>          
+        </div>
       </div>
 
       <div class="col-md-3">
         <div class="admin-form">
-          <div class="sid_ mb10">                   
+          <div class="sid_ mb10">
             <div class="hd_show_con">
               <div class="publice_edi">
                 Status: <span class="text-primary">{{ ($data->status == 1)?'Active':'InActive' }}</span>
-              </div>                    
+              </div>
             </div>
             <footer>
               <div id="publishing-action">
@@ -173,7 +173,7 @@
             </footer>
             <div class="clearfix"></div>
           </div>
-      
+
           <div class="sid_ mb10">
             <label class="field select">
               <select id="template" name="template">
@@ -183,7 +183,7 @@
              </select>
              <i class="arrow"></i>
            </label>
-         </div>   
+         </div>
 
           <div class="sid_ mb10">
             <label class="field select">
@@ -194,24 +194,24 @@
              </select>
              <i class="arrow"></i>
            </label>
-         </div>  
+         </div>
 
           <div class="sid_ mb10">
           <label class="field text"> Post Order
-            <input type="number" id="" name="post_order" class="form-control" placeholder="Post Order" value="{{$data->post_order}}" />   
+            <input type="number" id="" name="post_order" class="form-control" placeholder="Post Order" value="{{$data->post_order}}" />
           </label>
         </div>
-        
+
          <div class="sid_ mb10">
           <label class="field text"> Homepage Order
-            <input type="number" id="" name="home_order" class="form-control" placeholder="Insert Order Here"  value="{{$data->home_order}}" />   
+            <input type="number" id="" name="home_order" class="form-control" placeholder="Insert Order Here"  value="{{$data->home_order}}" />
           </label>
         </div>
 
        <div class="sid_ mb10">
-          <div class="hd_show_con">                                    
-            <input type="checkbox" name="show_in_home" value="{{ $data->show_in_home }}" {{ ($data->show_in_home == 1)?'checked':'' }} /> 
-            Show in home   <br>                   
+          <div class="hd_show_con">
+            <input type="checkbox" name="show_in_home" value="{{ $data->show_in_home }}" {{ ($data->show_in_home == 1)?'checked':'' }} />
+            Show in home   <br>
           </div>
         </div>
         <div class="sid_ mb10">
@@ -226,68 +226,68 @@
                <option value="coins">&#xf1c0; COINS </option>
                  <option value="chart-bar">&#xf080; BAR </option>
                   <option value="chart-line">&#xf201; LINE </option>
-                  <option value="newspaper">&#xf1ea; NEWSPAPER </option>   
-                  <option value="user-plus">&#xf007; USER PLUS </option>  
-                  <option value="briefcase">&#xf0b1; BRIEFCASE </option>  
-                  <option value="lightbulb">&#xf0eb; LIGHTBULB </option>   
-                  <option value="glasses">&#xf000; GLASSESS </option>  
-                  <option value="clock">&#xf017; CLOCK </option>  
+                  <option value="newspaper">&#xf1ea; NEWSPAPER </option>
+                  <option value="user-plus">&#xf007; USER PLUS </option>
+                  <option value="briefcase">&#xf0b1; BRIEFCASE </option>
+                  <option value="lightbulb">&#xf0eb; LIGHTBULB </option>
+                  <option value="glasses">&#xf000; GLASSESS </option>
+                  <option value="clock">&#xf017; CLOCK </option>
                   <option value="bullseye">&#xf140; BULLSEYE </option>
-                  <option value="wallet">&#xf07b; WALLET </option> 
-                  <option value="star"> &#xf005; STAR</option> 
-                  <option value="handshake"> HANDSHAKE </option> 
-                    <option value="fingerprint">FINGERPRINT </option> 
-                  
-                
-              </select> <i class="arrow"></i>            
+                  <option value="wallet">&#xf07b; WALLET </option>
+                  <option value="star"> &#xf005; STAR</option>
+                  <option value="handshake"> HANDSHAKE </option>
+                    <option value="fingerprint">FINGERPRINT </option>
+
+
+              </select> <i class="arrow"></i>
           </label>
         </div>
-        
-        
-<?php /* ?>
+
+
        <div class="sid_ mb10">
           <h4> Icon </h4>
             <div class="hd_show_con">
-            <div id="xedit-demo"> 
+            <div id="xedit-demo">
               @if($data->icon)
               <span class="iconid{{$data->id}}">
               <a href="#{{$data->id}}" class="delete_icon">X</a>
               <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $data->icon) }}" width="150" />
               <hr>
-              </span>               
-              @endif                       
+              </span>
+              @endif
              <input type="file" name="icon" />
             </div>
           </div>
         </div>
- 
+            <?php /* ?>
+
         <div class="sid_ mb10">
           <h4> Thumbnail </h4>
             <div class="hd_show_con">
-            <div id="xedit-demo"> 
+            <div id="xedit-demo">
               @if($data->thumbnail)
               <span class="thumbnailid{{$data->id}}">
               <a href="#{{$data->id}}" class="delete_thumbnail">X</a>
               <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $data->thumbnail) }}" width="150" />
               <hr>
-              </span>              
-              @endif                       
+              </span>
+              @endif
              <input type="file" name="thumbnail" />
             </div>
           </div>
         </div>
 <?php */?>
-        <div class="sid_ mb10">        
+        <div class="sid_ mb10">
           <h4> Featured Image </h4>
             <div class="hd_show_con">
-            <div id="xedit-demo"> 
+            <div id="xedit-demo">
               @if($data->page_thumbnail)
               <span class="page_thumbnailid{{$data->id}}">
               <a href="#{{$data->id}}" class="delete_pagethumbnail">X</a>
               <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $data->page_thumbnail) }}" width="150" />
               <hr>
               </span>
-              @endif                       
+              @endif
              <input type="file" name="page_thumbnail" />
             </div>
           </div>
@@ -296,20 +296,20 @@
         <div class="sid_ mb10">
           <h4> Banner </h4>
             <div class="hd_show_con">
-            <div id="xedit-demo"> 
+            <div id="xedit-demo">
               @if($data->banner)
               <span class="bannerid{{$data->id}}">
               <a href="#{{$data->id}}" class="delete_banner">X</a>
               <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $data->banner) }}" width="150" />
               <hr>
               </span>
-              @endif                       
+              @endif
              <input type="file" name="banner" />
             </div>
           </div>
         </div>
 
-      </div>        
+      </div>
     </div>
   </form>
   @endsection
@@ -325,12 +325,12 @@
     $.ajax({
       type:'delete',
       url:"{{url('delete_icon') . '/'}}" + id,
-      data:{_token:csrf},    
-      success:function(data){ 
+      data:{_token:csrf},
+      success:function(data){
         $('span.iconid' + id ).remove();
       },
-      error:function(data){  
-      alert(data + 'Error!');     
+      error:function(data){
+      alert(data + 'Error!');
      }
    });
   });
@@ -344,12 +344,12 @@
     $.ajax({
       type:'delete',
       url:"{{url('delete_thumbnail') . '/'}}" + id,
-      data:{_token:csrf},    
-      success:function(data){ 
+      data:{_token:csrf},
+      success:function(data){
         $('span.thumbnailid' + id ).remove();
       },
-      error:function(data){  
-      alert(data + 'Error!');     
+      error:function(data){
+      alert(data + 'Error!');
      }
    });
   });
@@ -363,12 +363,12 @@
     $.ajax({
       type:'delete',
       url:"{{url('delete_pagethumbnail') . '/'}}" + id,
-      data:{_token:csrf},    
-      success:function(data){ 
+      data:{_token:csrf},
+      success:function(data){
         $('span.page_thumbnailid' + id ).remove();
       },
-      error:function(data){  
-      alert(data + 'Error!');     
+      error:function(data){
+      alert(data + 'Error!');
      }
    });
   });
@@ -382,12 +382,12 @@
     $.ajax({
       type:'delete',
       url:"{{url('delete_banner') . '/'}}" + id,
-      data:{_token:csrf},    
-      success:function(data){ 
+      data:{_token:csrf},
+      success:function(data){
         $('span.bannerid' + id ).remove();
       },
-      error:function(data){  
-      alert(data + 'Error!');     
+      error:function(data){
+      alert(data + 'Error!');
      }
    });
   });

@@ -30,6 +30,7 @@ class Inquiry extends Mailable
     public function build(Request $request)
     {
         $email = $request->email;
-        return $this->view('emails.inquiry', ['email' => $email])->to($email);
+        $data=$request->all();
+        return $this->view('emails.inquiry', ['email' => $email,'data'=>$data])->to($email);
     }
 }

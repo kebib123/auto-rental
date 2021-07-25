@@ -1,210 +1,392 @@
 @extends('themes.default.common.master')
 @section('content')
+    <!-- slider -->
+    <div class="uk-position-relative uk-visible-toggle" tabindex="-1"
+         uk-slider="autoplay: true; autoplay-interval: 50000; pause-on-hover: true; clsActivated: uk-transition-active;  ">
+        <ul class="uk-slider-items uk-child-width-1-1 ">
+            @foreach($banner as $value)
+                <li>
+                    <div class="uk-media-500 uk-home-banner-img"><img
+                            src="{{asset('uploads/banners/'.$value->picture)}}" alt="home banner"></div>
+                    <div class="uk-position-center" style="width: 100%;">
+                        <div class="uk-container">
+                            <ul class="uk-grid-medium" uk-grid>
+                                <li class="uk-width-1-2@s">
+                                    <h1 class=" uk-h1 text-white uk-text-bold uk-position-relative uk-margin-small">
+                                        <span>{{$value->title}}</span></h1>
+                                    <div class="text-white uk-display-block uk-margin">
+                                        {!! $value->caption !!}
 
-    <main class="mt-0">
-
-        <section class="slider_section text-white text-center position-relative clearfix">
-            <div class="main_slider clearfix" data-slick='{"dots": false}'>
-                <div class="item has_overlay d-flex align-items-center"
-                     data-bg-image="{{asset('uploads/banners/'.$banner->picture)}}">
-                    <div class="overlay"></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                <div class="slider_content text-center">
-                                    <h3 class="text-white text-uppercase" data-animation="fadeInUp" data-delay=".3s">
-                                        {!! $banner->content !!}
-                                    </h3>
-                                    <!--   <p data-animation="fadeInUp" data-delay=".5s">6.6L V8 32V DDI OHV Turbo Diesel, 5-Speed Automatic, Fuel Type: Diesel, Color: Black</p> -->
-                                    <!-- <div class="abtn_wrap clearfix" data-animation="fadeInUp" data-delay=".7s"><a class="custom_btn bg_default_red btn_width text-uppercase" href="booking.php">Book Now <img src="assets/images/icons/icon_01.png" alt="icon_not_found"></a></div> -->
-                                </div>
-                            </div>
+                                    </div>
+                                    <a href="{{$value->link}}"
+                                       class="uk-button uk-button-large uk-button-white-outline">
+                                        {{$value->link_title}}
+                                    </a>
+                                </li>
+                                <li class="uk-width-1-2@s"></li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="carousel_nav clearfix">
-                <button type="button" class="main_left_arrow"><i class="fal fa-chevron-left"></i></button>
-                <button type="button" class="main_right_arrow"><i class="fal fa-chevron-right"></i></button>
-            </div>
-        </section>
-        <section class="search_section clearfix">
-            <div class="container ">
-                <div class="advance_search_form2" data-bg-color="rgb(4 0 138)" data-aos="fade-up" data-aos-delay="100">
-                    <form action="{{route('post-inquiry')}}" method="post">
-                        @csrf
-                        <div class="row align-items-end">
-                            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form_item">
-                                    <h4 class="input_title text-white">Pick Up Location</h4>
-                                    <div class="position-relative"><input id="location_two" type="text" name="location"
-                                                                          placeholder="City, State or Airport "> <label
-                                            for="location_two" class="input_icon"><i class="fas fa-map-marker-alt"></i></label>
+                </li>
+            @endforeach
+        </ul>
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+           uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+           uk-slider-item="next"></a>
+    </div>
+    <!-- slider end -->
+    <!-- end banner -->
+    <!-- start -->
+    <section class="uk-section uk-padding-remove-bottom bg-white uk-position-relative f-14">
+        <div class="uk-container">
+            <div class="uk-border-rounded uk-overflow-hidden uk-pull-top  uk-visible-toggle" tabindex="-1"
+                 uk-slider="autoplay: true; autoplay-interval: 50000; pause-on-hover: true; clsActivated: uk-transition-active;  ">
+                <ul class="uk-slider-items  uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-2@s uk-grid-collapse"
+                    uk-height-match="target:.uk-match-height" uk-grid
+                    uk-scrollspy="cls: uk-animation-slide-top-small; target:div, p, h1, a,  li;  delay: 50; repeat: false;">
+                    <!--  -->
+                    @foreach($content as $value)
+                        <li>
+                            <div>
+                                <div class="bg-primary uk-padding uk-match-height">
+                                    <div class="uk-grid-small text-white" uk-grid>
+                                        <!--  -->
+                                        <div class="uk-width-auto">
+                                            <i class="icon-call3  text-white uk-h1 uk-margin-small-top"></i>
+                                        </div>
+                                        <!--  -->
+                                        <!--  -->
+                                        <div class="uk-width-expand text-white">
+                                            <h2 class="uk-h4  text-white">{{$value->post_title}}</h2>
+                                            <p>
+                                                {!! $value->post_content !!}
+                                            </p>
+
+                                        </div>
+                                        <!--  -->
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form_item">
-                                    <h4 class="input_title text-white">Pick A Date</h4>
-                                    <input type="date" name="date">
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form_item">
-                                    <h4 class="input_title text-white">Contact Number</h4>
-                                    <input type="text" name="contact">
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                                <button type="submit" class="custom_btn bg_default_red text-uppercase">Inquiry Now<img
-                                        src="{{asset('images/icons/icon_01.png')}}" alt="icon_not_found"></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        </li>
+                @endforeach
+                <!--  -->
+
+                </ul>
+                <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
             </div>
-        </section>
-        <section class="feature_section sec_ptb_100 clearfix">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-                        <div class="section_title mb_60 text-center" data-aos="fade-up" data-aos-delay="100">
-                            <h2 class="title_text mb_15"><span>Our Vehicles</span></h2>
+        </div>
+    </section>
+    <!-- end  -->
+    <!--section-->
+    <section class="uk-section bg-pattern-01 uk-position-relative">
+        <div class="uk-container">
+            <div class="uk-grid-large" uk-grid
+                 uk-scrollspy="cls: uk-animation-slide-top-small; target:div, p, h1, a;  delay: 50; repeat: false;">
+                <div class="uk-width-1-2@m">
+                    <div class="">
+                        <div class="uk-media-400 uk-border-rounded uk-position-relative">
+                            <a href="{{url(geturl($about->uri))}}">
+                                <img src="{{asset('uploads/medium/'.$about->page_thumbnail)}}">
+                                <div class="uk-position-bottom">
+                                    <div class="uk-padding-small text-white">
+                                        <span class="uk-display-block f-18">{{$about->sub_title}}</span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="offers_car_carousel slideshow3_slider">
-                @if ($vehicles->count())
-                    @foreach ($vehicles as $row)
-                        <!--  -->
-                            @foreach (getposts($row->id) as $_row)
-
-                                <div>
-                                    <div class="element-item">
-                                        <div class="feature_vehicle_item" data-aos="fade-up" data-aos-delay="100">
-                                            <h3 class="item_title mb-0"><a
-                                                    href="{{ url(geturl($_row['uri'], $_row['page_key'])) }}"> {{$_row->post_title}}</a>
-                                            </h3>
-                                            <div class="item_image position-relative"><a class="image_wrap"
-                                                                                         href="#!"><img
-                                                        src="{{asset('uploads/medium/'.$_row->page_thumbnail)}}"
-                                                        alt="image_not_found"> </a></div>
-
+                <div class="uk-width-expand@m">
+                    <div class="uk-margin-bottom">
+                        <span class="text-secondary f-18 f-w-500 uk-margin-remove">{{$about->post_title}}</span>
+                        <h1 class="f-28 text-black  f-w-600 uk-margin-remove ">The Chhatrapati Free Hospital</h1>
+                    </div>
+                    <div class="f-18 uk-margin-bottom">
+                        <p>
+                            {!! $about->post_excerpt !!}
+                        </p>
+                        <a href="{{url(geturl($about->uri))}}" class="uk-scrollspy-inview uk-animation-slide-top-small"
+                           style="">Read
+                            More <i uk-icon="icon:arrow-right; ratio: 1.5;" class="uk-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--section end-->
+    <!--services-->
+    <section class="uk-section bg-light uk-position-relative">
+        <div class="uk-container">
+            <div class="uk-margin-bottom">
+                <span class="text-secondary f-18 f-w-500 uk-margin-remove">Service</span>
+                <h1 class="f-28 text-black  f-w-600 move uk-margin-remove">Centres of Excellence</h1>
+            </div>
+            <div class="uk-position-relative uk-visible-toggle " tabindex="-1" uk-slider="autoplay: true; sets: true;">
+                <!-- <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@m uk-grid" uk-grid uk-scrollspy="cls: uk-animation-slide-top-small; target:div, li, a, h1;  delay: 50; repeat: false;"> -->
+                <ul class="uk-slider-items  uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-2@s uk-margin-medium-bottom"
+                    uk-height-match="target:.bg-white" uk-grid
+                    uk-scrollspy="cls: uk-animation-slide-top-small; target:div, p, h1, a,  li;  delay: 50; repeat: false;">
+                    <!--  -->
+                    @foreach($service as $value)
+                        <li>
+                            <div>
+                                <div
+                                    class="bg-white uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-transition-toggle uk-border-bottom-on-hover">
+                                    <div class="uk-padding">
+                                        <div class="uk-padding-small uk-services-icon">
+                                            <i class="icon-head f-80 text-primary"></i>
+                                            <i class="icon-head text-light"></i>
+                                        </div>
+                                        <h1 class="uk-h4 f-w-600 uk-margin-small">
+                                            <a href="{{url(strtolower(post_parent($value->uri)->uri).'/'.geturl($value->uri))}}"
+                                               class="text-primary">{{$value->post_title}}</a>
+                                        </h1>
+                                        <div class="uk-margin-small uk-display-block">
+                                            <p>
+                                                {!! $value->post_excerpt !!}
+                                            </p>
+                                        </div>
+                                        <div class="uk-text-left uk-margin-top">
+                                            <a href="{{url(strtolower(post_parent($value->uri)->uri).'/'.geturl($value->uri))}}"
+                                               class="uk-button uk-button-primary-outline">Read
+                                                More <i uk-icon="icon:arrow-right; ratio: 1.5;"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
+                        </li>
+                @endforeach
+                <!--  -->
 
-                        <!--  -->
-                        @endforeach
+                </ul>
+                <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+            </div>
+        </div>
+    </section>
+    <!--services end-->
+    <!-- section -->
+    <section class="uk-section bg-primary">
+        <div class="uk-container"
+             uk-scrollspy="cls: uk-animation-slide-top-small; target:div, h1, a;  delay: 50; repeat: false;">
+            <div class="uk-margin-medium-bottom text-white">
+                <h1 class="f-28 text-white  f-w-600 ">Why Choose Chhatrapati Hospital</h1>
+            </div>
+            <!--  -->
+            <ul class=" uk-child-width-1-4@l uk-child-width-1-2@m uk-child-width-1-2@s uk-grid-small"
+                uk-height-match="target:.uk-match-height" uk-grid
+                uk-scrollspy="cls: uk-animation-slide-top-small; target:div, p, h1, a,  li;  delay: 50; repeat: false;">
+                <!--  -->
+                <li>
+                    <div>
+                        <div
+                            class="uk-border-bottom-on-hover bg-white uk-card uk-card-hover uk-padding uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-match-height ">
+                            <div class="uk-margin-bottom">
+                                <i class="icon-heart f-w-800 f-50 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h2 class="f-18 uk-margin-remove text-primary">Medical Advices & Check Ups</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--  -->
+                <!--  -->
+                <li>
+                    <div>
+                        <div
+                            class="uk-border-bottom-on-hover bg-white uk-card uk-card-hover uk-padding uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-match-height ">
+                            <div class="uk-margin-bottom">
+                                <i class="icon-doctor f-w-800 f-50 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h2 class="f-18 uk-margin-remove text-primary">Trusted Medical Treatment</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--  -->
+                <!--  -->
+                <li>
+                    <div>
+                        <div
+                            class="uk-border-bottom-on-hover bg-white uk-card uk-card-hover uk-padding uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-match-height ">
+                            <div class="uk-margin-bottom">
+                                <i class="icon-ambulance f-w-800 f-50 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h2 class="f-18 uk-margin-remove text-primary">Emergency Help Available 24/7</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--  -->
+                <!--  -->
+                <li>
+                    <div>
+                        <div
+                            class="uk-border-bottom-on-hover bg-white uk-card uk-card-hover uk-padding uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-match-height ">
+                            <div class="uk-margin-bottom">
+                                <i class="icon-drugs f-w-800 f-50 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h2 class="f-18 uk-margin-remove text-primary">Medical Research Professionals </h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--  -->
+                <!--  -->
+                <li>
+                    <div>
+                        <div
+                            class="uk-border-bottom-on-hover bg-white uk-card uk-card-hover uk-padding uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-match-height ">
+                            <div class="uk-margin-bottom">
+                                <i class="icon-first-aid-kit f-w-800 f-50 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h2 class="f-18 uk-margin-remove text-primary">Only Qualified Doctors</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--  -->
+                <!--  -->
+                <li>
+                    <div>
+                        <div
+                            class="uk-border-bottom-on-hover bg-white uk-card uk-card-hover uk-padding uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-match-height ">
+                            <div class="uk-margin-bottom">
+                                <i class="icon-hospital f-w-800 f-50 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h2 class="f-18 uk-margin-remove text-primary">Cutting Edge Facility</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--  -->
+                <!--  -->
+                <li>
+                    <div>
+                        <div
+                            class="uk-border-bottom-on-hover bg-white uk-card uk-card-hover uk-padding uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-match-height ">
+                            <div class="uk-margin-bottom">
+                                <i class="icon-expenses f-w-800 f-50 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h2 class="f-18 uk-margin-remove text-primary">Affordable Prices For All Patients</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--  -->
+                <!--  -->
+                <li>
+                    <div>
+                        <div
+                            class="uk-border-bottom-on-hover bg-white uk-card uk-card-hover uk-padding uk-box-shadow-medium uk-border-rounded uk-overflow-hidden uk-match-height ">
+                            <div class="uk-margin-bottom">
+                                <i class="icon-bandage f-w-800 f-50 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h2 class="f-18 uk-margin-remove text-primary">Quality Care For Every Patient</h2>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--  -->
+            </ul>
+        </div>
+    </section>
+    <!-- section -->
+    <!-- section -->
+    <section class="uk-section bg-white uk-padding-remove-top">
+        <div class="uk-container"
+             uk-scrollspy="cls: uk-animation-slide-top-small; target:div, h1, a;  delay: 50; repeat: false;">
+            <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-bottom uk-margin-medium-top">
+                <div>
+                    <h1 class="f-28 text-black  f-w-600 ">Recent Articles</h1>
+                </div>
+                <div>
+                    {{--                    <a class="uk-button-text" href="{{url('page/' . posttype_url($uri->uri))}}">Read More</a>--}}
+                </div>
+            </div>
+            <!--  -->
+            <!--  -->
+            <ul class="uk-grid-medium uk-child-width-1-3@l uk-child-width-1-3@m uk-child-width-1-2@s"
+                uk-height-match="target:.uk-same-height" uk-grid>
+                <!--  -->
+                @foreach($media as $value)
+                    @if($value->external_link)
+                        <li>
+                            <div class=" bg-white uk-box-shadow-medium uk-bordered-rounded uk-overflow-hidden">
+                                <!--  <div class="uk-media-200 uk-position-relative">
+                                   <a href="media-single.php">
+                                      <img src="images/blog/03.jpg">
+                                   </a>
+                                   </div> -->
+                                <!-- if video -->
+                                <div class="open-video" data-youtube-id="{{$value->external_link}}">
+                                    <div
+                                        class="uk-media-250 uk-position-relative uk-pointer-left uk-pointer-left-primary uk-same-height">
+                                        <div class="uk-overlay-primary uk-position-cover"></div>
+                                        <img
+                                            src="https://img.youtube.com/vi/{{$value->external_link}}/maxresdefault.jpg">
+                                        <div class="uk-position-center uk-zindex">
+                                            <i class="fa fa-play fa-2x text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- if video -->
+                                <div class="uk-border-left-on-hover uk-padding uk-same-height">
+                                    <div class="f-14 uk-margin-small-bottom">
+                                        <a href="{{geturl(post_parent($value->uri)->uri)}}"
+                                           class="uk-margin-remove text-secondary">
+                                            {{post_parent($value->uri)->post_title}}
+                                        </a>
+                                    </div>
+                                    <h1 class="f-20 f-w-400 uk-margin-remove"><a
+                                            href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}">{{$value->post_title}}</a>
+                                    </h1>
+                                </div>
+                            </div>
+                        </li>
                     @endif
-
-
-                </div>
-
-            </div>
-        </section>
-        <section class="service_section sec_ptb_100 pb-0 mb_100 text-white clearfix"
-                 data-bg-gradient="linear-gradient(0deg, #0C0C0F, #292D45)">
-            <div class="container">
-                <div class="section_title mb_30 text-center" data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="title_text text-white mb-0"><span>Why choose us?</span></h2>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="service_primary text-center text-white" data-aos="fade-up" data-aos-delay="100">
-                            <div class="item_icon"><i class="far fa-tag"></i></div>
-                            <h3 class="item_title text-white">Fixed rates</h3>
-                            <p class="mb-0">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="service_primary text-center text-white" data-aos="fade-up" data-aos-delay="200">
-                            <div class="item_icon"><i class="fas fa-car"></i></div>
-                            <h3 class="item_title text-white">Quality vehicles</h3>
-                            <p class="mb-0">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="service_primary text-center text-white" data-aos="fade-up" data-aos-delay="300">
-                            <div class="item_icon"><i class="fal fa-headset"></i></div>
-                            <h3 class="item_title text-white">Help Center & Support 24/7</h3>
-                            <p class="mb-0">Vestibulum at ultrices elit. Maecenas faucibus vulputate vestibulum</p>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="feature_carousel_wrap position-relative clearfix">
-                    <div class="slideshow1_slider" data-aos="fade-up" data-aos-delay="100">
-                    @if ($package->count())
-                        @foreach ($package as $row)
-                            <!--  -->
-                                @foreach (getposts($row->id) as $_row)
-                                    <div class="item">
-                                        <div class="feature_fullimage">
-                                            <img src="{{asset('uploads/medium/'.$_row->page_thumbnail)}}"
-                                                 alt="image_not_found">
-                                            <div class="item_content text-white">
-                                                <h3 class="item_title text-white">{{$_row->post_title}}</h3>
-                                                <p>{!! $_row->post_excerpt !!} </p>
-                                                <a class="text_btn text-uppercase"
-                                                   href="{{ url(geturl($_row['uri'], $_row['page_key'])) }}"><span>Read more</span>
-                                                    <img src="{{asset('images/icons/icon_02.png')}}"
-                                                         alt="icon_not_found"></a>
-                                            </div>
-                                        </div>
+                    @if($value->page_thumbnail)
+                        <li>
+                            <div class="bg-white uk-box-shadow-medium uk-bordered-rounded uk-overflow-hidden">
+                                <div class="uk-media-250 uk-position-relative">
+                                    <a href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}">
+                                        <img src="{{asset('uploads/original/' . $value->page_thumbnail)}}">
+                                    </a>
+                                </div>
+                                <div class="uk-border-left-on-hover uk-padding uk-same-height">
+                                    <div class="f-14 uk-margin-small-bottom">
+                                        <a href="{{geturl(post_parent($value->uri)->uri)}}"
+                                           class="uk-margin-remove text-secondary">
+                                            {{post_parent($value->uri)->post_title}}
+                                        </a>
                                     </div>
-                                @endforeach
-                            @endforeach
-                        @endif
-                    </div>
-                    <div class="carousel_nav">
-                        <button type="button" class="s1_left_arrow"><i class="fal fa-angle-left"></i></button>
-                        <button type="button" class="s1_right_arrow"><i class="fal fa-angle-right"></i></button>
-                    </div>
-                </div>
-            </div>
-        </section>
+                                    <h1 class="f-20 f-w-400 uk-margin-remove"><a
+                                            href="{{ url(post_parent($value->uri)->uri.'/'.geturl($value['uri'], $value['page_key'])) }}">
+                                            {{$value->post_title}}
+                                        </a></h1>
+                                </div>
+                            </div>
+                        </li>
+                @endif
+            @endforeach
+            <!--  -->
+                <!--  -->
 
-        <section class="testimonial_section sec_ptb_150 clearfix">
-            <div class="container">
-                <div class="section_title mb_60 text-center" data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="title_text mb-0"><span>  Clients Review</span></h2>
-                </div>
-                <div class="testimonial_carousel_wrap position-relative">
-                    <div class="testimonial_carousel" data-slick='{"dots": false}' data-aos="fade-up"
-                         data-aos-delay="300">
-                        @if ($reviews->count())
-                            @foreach ($reviews as $row)
-                                @foreach (getposts($row->id) as $_row)
-                                    <div class="item">
-                                        <div class="testimonial_item2 text-center">
-                                            <p class="mb_30">{!! $_row->post_content !!}</p>
-                                            <div class="admin_info">
-                                                <div class="admin_image"><img
-                                                        src="{{asset('uploads/medium/'.$_row->banner)}}"
-                                                        alt="image_not_found"></div>
-                                                <h4 class="admin_name">{{$_row->post_title}}</h4>
+                <!--  -->
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endforeach
-                        @endif
-                    </div>
-                    <div class="carousel_nav position_ycenter">
-                        <button type="button" class="ts_left_arrow"><i class="fal fa-angle-left"></i></button>
-                        <button type="button" class="ts_right_arrow"><i class="fal fa-angle-right"></i></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
+            </ul>
+            <!--  -->
+        </div>
+    </section>
+    <!-- section -->
 
 @endsection
 @section('libraries')

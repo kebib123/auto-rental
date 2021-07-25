@@ -27,6 +27,6 @@ class HeaderComposerProvider extends ServiceProvider
     }
 
     public function composeMenu(){
-          view()->composer('themes.default.common.header','App\Http\ViewComposers\HeaderComposer');
+          view()->composer('*','App\Http\ViewComposers\HeaderComposer');
     }
 }

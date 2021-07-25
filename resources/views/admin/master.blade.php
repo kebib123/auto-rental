@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset(env('PUBLIC_PATH') . 'assets/skin/default_skin/css/theme2.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset(env('PUBLIC_PATH') . 'assets/skin/default_skin/css/theme3.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset(env('PUBLIC_PATH') . 'assets/admin-tools/admin-forms/css/admin-forms.css') }}">
-  <link rel="shortcut icon" href="{{ asset(env('PUBLIC_PATH') . 'themes-assets/images/favicon.png') }}">
+  <link rel="shortcut icon" href="{{ asset(env('PUBLIC_PATH') . 'images/favicon.png') }}">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

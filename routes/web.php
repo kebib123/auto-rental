@@ -10,13 +10,21 @@
 |
  */
 Route::get('/', 'FrontendControllers\FrontpageController@index');
+Route::get('/proposal-request/{uri?}', 'FrontendControllers\FrontpageController@proposal_request')->name('proposal-request');
+Route::post('/proposal-request/{uri?}', 'FrontendControllers\FrontpageController@proposal_request')->name('proposal-request');
+Route::get('/appointment/{uri?}','FrontendControllers\FrontpageController@appointment')->name('appointment');
+Route::post('/appointment/{uri?}','FrontendControllers\FrontpageController@appointment')->name('appointment');
+Route::get('search-results', 'FrontendControllers\FrontpageController@search_results')->name('search-results');
+Route::post('search-results', 'FrontendControllers\FrontpageController@search_results')->name('search-results');
+
+Route::get('/donors', 'FrontendControllers\FrontpageController@members')->name('post.members');
+
 
 //Inquiry routes
 Route::post('trip-inquiry','FrontendControllers\FrontpageController@post_inquiry')->name('post-inquiry');
 //
 Route::post('trip-booking','FrontendControllers\FrontpageController@random_tripbooking')->name('random-trip');
 Route::post('vehicle-booking','FrontendControllers\FrontpageController@vehicle_booking')->name('vehicles-booking');
-Route::post('contact-us','FrontendControllers\FrontpageController@contact_us')->name('contact-us');
 
 
 /* Authentication Routes... */
@@ -75,6 +83,9 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 Route::middleware(['auth'])->group(function () {
     Route::get('admin/dashboard', 'DashboardController@index')->name('dashboard');
 
+
+    Route::get('admin/appointment', 'DashboardController@proposal_request')->name('appointment.index');
+    Route::get('admin/proposal-delete/{id}', 'DashboardController@proposal_delete')->name('proposal-delete');
     Route::get('admin/trip-booking', 'DashboardController@trip_booking')->name('trip-booking');
     Route::get('admin/trip-booking-delete/{id}', 'DashboardController@trip_booking_delete')->name('trip-booking-delete');
     Route::get('admin/vehicle-booking', 'DashboardController@vehicle_booking')->name('vehicle-booking');
@@ -87,6 +98,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/admin-user', 'AdminControllers\Members\UserController@admin_user');
     Route::get('admin/agent-user', 'AdminControllers\Members\UserController@agent_user');
     Route::resources([
+        'admin/membership' => 'AdminControllers\Membership\MembershipController',
         'admin/adminmenu' => 'AdminControllers\AdminMenu\AdminMenuController',
         'admin/user' => 'AdminControllers\Members\UserController',
         'admin/member' => 'AdminControllers\Members\MemberController',

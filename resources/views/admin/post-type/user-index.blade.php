@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('title','Post Type')
 @section('breadcrumb')
-{{--    <a href="{{ route('type.posttype.create', Request::segment(2)) }}" class="btn btn-primary btn-sm">Create</a>--}}
+    <a href="{{ route('type.posttype.create', Request::segment(2)) }}" class="btn btn-primary btn-sm">Create</a>
 @endsection
 @section('content')
     <div class="tray tray-center" style="">

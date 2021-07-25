@@ -48,7 +48,7 @@ function show_category($category_id){
 }
 
 function loop_category($id){
-	$category = PostCategoryModel::where('pid',$id)->first();
+	$category = PostCategoryModel::where('id',$id)->first();
 	return $category;
 }
 
@@ -58,7 +58,7 @@ function has_posts($post_type){
     return $data;
   }
   return false;
-} 
+}
 
 function has_single_post($post_type){
   $data = PostModel::where(['post_type'=>$post_type,'post_parent'=>'0','status'=>1])->orderBy('post_order','asc')->first();
@@ -73,7 +73,7 @@ function check_uri($uri){
      if($data){
       return true;
      }else{
-       $page_key = PostModel::where(['page_key'=>$uri])->first();  
+       $page_key = PostModel::where(['page_key'=>$uri])->first();
        if($page_key){
             return true;
        }
@@ -89,7 +89,7 @@ function check_posttype_uri($uri){
   return false;
 }
 
-// function geturl($uri=null){  
+// function geturl($uri=null){
 //   $count = PostModel::where(['uri'=>$uri])->count();
 //   $data = PostModel::where(['page_key'=>$uri])->first();
 //   if($uri){
@@ -98,7 +98,7 @@ function check_posttype_uri($uri){
 //     }
 //   }
 //   return $data['uri'].'.html';
-// } 
+// }
 
 function geturl($uri=NULL,$page_key=NULL){
      $count = PostModel::where(['uri'=>$uri])->count();
@@ -109,16 +109,16 @@ function geturl($uri=NULL,$page_key=NULL){
             return $data->page_key.'.html';
       }
     return $data->uri.'.html';
-} 
+}
 
-function posttype_url($uri){  
+function posttype_url($uri){
   $count = PostTypeModel::where(['uri'=>$uri])->count();
   $data = PostTypeModel::where(['uri'=>$uri])->first();
   if($count > 1){
     return $data->page_key.'.html';
   }
  return $data->uri.'.html';
-} 
+}
 
 // Check and List Child Post
 function has_child_post($id){
@@ -128,7 +128,7 @@ function has_child_post($id){
     return $data;
   }
   return false;
-} 
+}
 
 function check_child_post($id){
 	$data = PostModel::where('post_parent',$id)->count();
@@ -138,12 +138,12 @@ function check_child_post($id){
 function photo_category(){
 	$data = ImageGalleryCategoryModel::all();
 	return $data;
-}	
+}
 
 function video_gallery(){
 	$data = VideoGalleryModel::paginate(15);
 	return $data;
-}	   
+}
 
 // Get parent post
 function post_parent($uri){
@@ -155,9 +155,19 @@ function post_parent($uri){
  return false;
 }
 
+// Get parent category name
+function get_parent_name($id){
+    $post = PostModel::where(['id'=>$id])->first();
+    if($post->post_parent){
+        $parent = PostModel::where(['id'=>$post->post_parent,'status'=>1])->first();
+        return $parent;
+    }
+    return false;
+}
+
 // Associated Post
 function associated_posts($id){
-  $post = AssociatedPostModel::where('post_id',$id)->get(); 
+  $post = AssociatedPostModel::where('post_id',$id)->get();
   if($post){
    return $post;
  }
@@ -269,13 +279,13 @@ function getcategories($post_type){
   }
 
   function getcategory_url($uri){
-    $data = PostCategoryModel::where(['uri'=>$uri])->get();     
+    $data = PostCategoryModel::where(['uri'=>$uri])->get();
      if($data->count() > 0 ){
-           $data = PostCategoryModel::where(['uri'=>$uri])->first();  
-           return $data->uri.'.html';   
+           $data = PostCategoryModel::where(['uri'=>$uri])->first();
+           return $data->uri.'.html';
      }
      return false;
-  } 
+  }
 
 function getPostByCagtegory($catId){
  $data = PostModel::where('post_category',$catId)->orderBy('post_order')->get();
@@ -299,7 +309,7 @@ function footerMenu($post_type){
         $li .= '<ul class="footer-widget__list">';
         foreach($_data as $_row){
           $li .= '<li><a href="'.url('/services/'.geturl($_row->uri)).'" class="hover-style-link"><span>'. $_row->post_title .'</span></a></li>';
-        }       
+        }
         $li .= '</ul></div>';
       }
     return $li;
@@ -318,7 +328,7 @@ function footerMenuMobile($post_type){
         $li .= '<ul class="sub-menu">';
         foreach($_data as $_row){
         $li .= '<li><a href="'.url('/services/'.geturl($_row->uri)).'"><span>'. $_row->post_title .'</span></a></li>';
-        }       
+        }
         $li .= '</ul></li>';
       }
     return $li;
@@ -339,7 +349,7 @@ function viewsIndicator($views){
     if($views == 1000){
       return '<span class="badge badge-success badge-pill"><i class="fa fa-eye"></i> '. $views/1000 .'K </span>';
     }
-    
+
     if($views < 1000 && $views >= 500){
       return '<span class="badge badge-primary badge-pill"><i class="fa fa-eye"></i> '. $views .' </span>';
     }
@@ -350,8 +360,8 @@ function viewsIndicator($views){
 
     if($views < 100){
       return '<span class="badge badge-warning badge-pill"><i class="fa fa-eye"></i> '. $views .' </span>';
-    }   
-    
+    }
+
 }
 
 function checkAuth($id){
@@ -362,7 +372,7 @@ function checkAuth($id){
     if($data){
       return true;
     }
-  } 
+  }
   return false;
 }
 

@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class SettingController extends Controller
 {
     public function index(){
-    	$data = SettingModel::where('id',1)->first();    	
+    	$data = SettingModel::where('id',1)->first();
     	return view('admin.settings.setting', compact('data'));
     }
 
@@ -20,7 +20,7 @@ class SettingController extends Controller
     }
 
      public function edit(Request $request){
-    	$data = SettingModel::where('id',1)->first();    	
+    	$data = SettingModel::where('id',1)->first();
     	return view('admin.settings.setting');
     }
 
@@ -38,8 +38,8 @@ class SettingController extends Controller
         $data->address = $request->address;
         $data->address2 = $request->address2;
         $data->facebook_link = $request->facebook_link;
-        $data->linkedin_link = $request->linkedin_link;  
-        $data->youtube_link = $request->youtube_link;      
+        $data->linkedin_link = $request->linkedin_link;
+        $data->youtube_link = $request->youtube_link;
         $data->twitter_link = $request->twitter_link;
         $data->instagram_link = $request->instagram_link;
         $data->location_link = $request->location_link;
@@ -51,9 +51,13 @@ class SettingController extends Controller
         $data->meta_description = $request->meta_description;
         $data->google_map = $request->google_map;
         $data->google_map2 = $request->google_map2;
-        $data->welcome_title = $request->welcome_title; 
-        $data->welcome_text = $request->welcome_text; 
-        $data->copyright_text = $request->copyright_text;        
+        $data->welcome_title = $request->welcome_title;
+        $data->welcome_text = $request->welcome_text;
+        $data->copyright_text = $request->copyright_text;
+        $data->field1 = $request->field1;
+        $data->field2 = $request->field2;
+        $data->field3 = $request->field3;
+        $data->field4 = $request->field4;
         if($data->save()){
             return redirect()->back()->with('message','Update Sucessfully.');
         }

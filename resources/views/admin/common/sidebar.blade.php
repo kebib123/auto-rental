@@ -25,47 +25,32 @@
                     <span class="sidebar-title">Dashboard</span>
                 </a>
             </li>
-            @if(checkAuth(15))
+            @if((Auth::id() == 4))
                 <li>
-                    <a href="{{ url('type-user/{posttype}') }}">
+                    <a href="{{ url('type/posttype')}}">
                         <span class="fa fa-file-image-o text-info" aria-hidden="true"></span>
                         Post Types
                     </a>
                 </li>
             @endif
             @if(checkAuth(15))
-                <li class="">
-                    <a href="avoid:javascript;" class="accordion-toggle">
-                        <span class="fa fa-files-o text-info" aria-hidden="true"></span>
-                        <span class="sidebar-title">Booking & Inquiry </span>
-                        <span class="caret"></span>
+                <li>
+                    <a href="{{ url('admin/appointment') }}">
+                        <span class="fa fa-file-image-o text-info" aria-hidden="true"></span>
+                        <span class="sidebar-title">Appointments</span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li>
-                            <a href="{{ url('admin/trip-booking') }}">
-                                <span class="fa fa fa-arrows-h"></span>
-                                Trip Booking
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('admin/vehicle-booking') }}">
-                                <span class="fa fa fa-arrows-h"></span>
-                                Vehicle Booking
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('admin/inquiry') }}">
-                                <span class="fa fa fa-arrows-h"></span>
-                                Inquiry
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('admin/contact') }}">
-                                <span class="fa fa fa-arrows-h"></span>
-                                Contact
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li>
+                    <a href="{{ url('admin/membership') }}">
+                        <span class="fa fa-file-image-o text-info" aria-hidden="true"></span>
+                        <span class="sidebar-title">Donors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/postcategory') }}">
+                        <span class="fa fa-arrows"></span>
+                        Post Categories
+                    </a>
                 </li>
             @endif
 

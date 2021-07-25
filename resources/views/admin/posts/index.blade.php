@@ -6,7 +6,7 @@
 @section('content')
 <section id="" class="table-layout animated fadeIn">
   <!-- begin: .tray-center -->
-  <div class=""> 
+  <div class="">
    <h4> {{posttype(Request::segment(2))->post_type}} </h4>
    <!-- recent orders table -->
    <div class="panel">
@@ -18,10 +18,10 @@
               <th class="text-center"> SN </th>
               <th>Post Name</th>
               <!-- <th class="text-center">GP</th>    -->
-              <th class="text-center">Status</th>   
-              <th class="text-center">Visiter</th>                         
-              <th class="text-center">Order</th>   
-              <th class="text-center"> &nbsp; </th>                                              
+              <th class="text-center">Status</th>
+              <th class="text-center">Visiter</th>
+              <th class="text-center">Order</th>
+              <th class="text-center"> &nbsp; </th>
               <th>Published </th>
             </tr>
           </thead>
@@ -31,25 +31,25 @@
               <td class="text-center">
                 {{$loop->iteration}}
               </td>
-              <td class="post_title title_hi_sh"> 
+              <td class="post_title title_hi_sh">
                 @if(check_child_post($row->id))
-                    <strong> {{ $row->post_title }} </strong> 
+                    <strong> {{ $row->post_title }} </strong>
                       <a href="{{ url('admin/' . Request::segment(2) . '/' . $row->id ) }}"> <i class="fa fa-list" aria-hidden="true"></i> </a>
                     @else
-                    <strong> {{ $row->post_title }} </strong> 
-                @endif                
+                    <strong> {{ $row->post_title }} </strong>
+                @endif
                 <div class="row_actions"><span class="id">ID: {{$row->id}} | </span><span class="edit"><a href="{{url( 'admin/'.Request::segment(2) .'/'. $row->id. '/edit')}}">
                 Edit
-                </a> 
+                </a>
                  </span>
                  @if(!check_child_post($row->id) > 0 )
                 | <span class="trash"><a href="#{{$row->id}}" class="submitdelete1">
                  Delete
-                 </a>                   
+                 </a>
                   </span>
                  @endif
                 </td>
-                 
+
                 <td class="text-center">
                 <input class="CheckStatus" type="checkbox" name="status" data-rowid="{{$row->id}}" {{($row->status == 1)?'checked':''}} />
                 </td>
@@ -57,19 +57,20 @@
                 <td class="text-center"> <input class="GlobalPost" type="checkbox" name="global_post" data-rowid="{{$row->id}}" {{($row->global_post == 1)?'checked':''}} />  </td>
                  <?php */?>
                 <td class="text-center">{{$row->visiter}}</td>
-            
-                <td class="categories text-center">                  
+
+                <td class="categories text-center">
                   {{ $row->post_order }}
                 </td>
-                
+
               <td>
               <a href="{{url('admin/associated/'.Request::segment(2).'/'.$row->id)}}" title="Associated posts">
               <i class="fa fa-list-ol"></i>
               </a>
-              <?php /*?>
+
                  <a href="{{ route('admin.multiplephoto.index', $row->id ) }}" title="Photo">
                   <i class="fa fa-file-image-o" aria-hidden="true"></i>
-                </a> 
+                </a>
+              <?php /*?>
                <a href="{{  route('admin.multiplevideo.index', $row->id ) }}" title="Video">
                   <i class="fa fa-file-video-o" aria-hidden="true"></i>
                   </a>
@@ -77,11 +78,11 @@
                    <a href="{{ route('doc.multipledocument',$row->id) }}" title="PDF">
                   <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                 </a>
-               
-                  
-                              
+
+
+
                 </td>
-                <td class="date"> {{$row->created_at}} </td>             
+                <td class="date"> {{$row->created_at}} </td>
               </tr>
               @endforeach
 
@@ -100,7 +101,7 @@
 <script src="{{asset('/vendor/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js')}}"></script>
 <script src="{{asset('vendor/plugins/datatables/media/js/dataTables.bootstrap.js')}}"></script> //
 <script type="text/javascript">
-(function ( $ ) { 
+(function ( $ ) {
   $('.submitdelete1').on('click',function(e){
     e.preventDefault();
     if(confirm('Are you sure to delete??')){
@@ -110,11 +111,11 @@
     $.ajax({
       type:'delete',
       url:"{{url('admin').'/'.Request::segment(2).'/'}}" + id,
-      data:{_token:csrf},    
-      success:function(data){  
+      data:{_token:csrf},
+      success:function(data){
       $('tbody tr.id' + id ).remove();
      },
-     error:function(data){       
+     error:function(data){
        alert('Error occurred!');
      }
    });
@@ -130,14 +131,14 @@
       $.ajax({
         type:'put',
         url:url,
-        data:{_token:csrf}, 
-        success:function(data){  
+        data:{_token:csrf},
+        success:function(data){
          colsole.log(data);
         },
-        error:function(data){       
+        error:function(data){
           colsole.log(data);
         }
-      });      
+      });
   });
 
     //
@@ -149,16 +150,16 @@
       $.ajax({
         type:'put',
         url:url,
-        data:{_token:csrf}, 
-        success:function(data){  
+        data:{_token:csrf},
+        success:function(data){
          colsole.log('success');
         },
-        error:function(data){       
+        error:function(data){
           colsole.log('Error');
         }
-      });      
+      });
   });
- 
+
 }( jQuery ));
 
 /********/

@@ -3,149 +3,55 @@
 @section('meta_keyword',$data->meta_keyword)
 @section('meta_description',$data->meta_description)
 @section('content')
- <!-- /header -->
-      <div class="back-on-mobile p-1  bg-primary shadow-sm d-lg-none d-md-block  d-sm-block">
-      <div class="container ">
-      <a href="javascript:history.back()" class="text-white"><i class="fa fa-chevron-left" aria-hidden="true"></i> Go Back </a>
-      </div>
-      </div>
-<!-- section start -->
-<section class="pb-5 pt-5 ">
-   <div class="container">
-       @include('themes.default.common.innerbanner')
-      <div class=" text-center mb-5">
-         <h1 class="mb-0 mt-0 h6 font-weight-bold text-secondary">{{$data->sub_title}}</h1>
-         <h1 class="h3 mb-3 mt-0 font-weight-bold text-primary">{{$data->post_title}}</h1>
-      </div>
-       @if($associated_posts->count()>0)
-      <!-- member -->
-      <div class="row text-center member-list">
-         <!--  -->
-          @foreach($associated_posts->slice(0, 1) as $row)
-         <div class="col-lg-4 col-md-6  offset-lg-2 mb-5">
-            <a href="#" data-toggle="modal" data-target=".team-details-{{$row->id}}">
-               <div class="member pt-4 pb-4 shadow-lg  rounded">
-                  <div class="member-image">
-                    @if($row->thumbnail)
-                     <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $row->thumbnail) }}" alt="">
-                     @else
-                   <img src="{{asset('themes-assets')}}/images/default.png" alt="" >
-                     @endif
-                  </div>
-                  <div class="member-content">
-                    <h1 class="h6 font-weight-bold mt-0 mb-0">{{$row->title}}</h1>
-                     <span class="mt-0 mb-0 text-secondary">{{$row->sub_title}}</span>
-                  </div>
-               </div>
-            </a>
-         </div>
-          @endforeach
-         <!--  -->
-         <!--  -->
-          @foreach($associated_posts->slice(1, 1) as $row)
-         <div class="col-lg-4 col-md-6  mb-5">
-            <a href="#" data-toggle="modal" data-target=".team-details-{{$row->id}}">
-               <div class="member pt-4 pb-4 shadow-lg  rounded">
-                  <div class="member-image">
-                     @if($row->thumbnail)
-                     <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $row->thumbnail) }}" alt="">
-                     @else
-                   <img src="{{asset('themes-assets')}}/images/default.png" alt="" >
-                     @endif
-                  </div>
-                  <div class="member-content">
-                      <h1 class="h6 font-weight-bold mt-0 mb-0">{{$row->title}}</h1>
-                     <span class="mt-0 mb-0 text-secondary">{{$row->sub_title}}</span>
-                  </div>
-               </div>
-            </a>
-         </div>
-          @endforeach
-         <!--  -->
-         <!--  -->
-          @foreach($associated_posts->slice(2, 3) as $row)
-         <div class="col-lg-4 col-md-6  mb-5">
-            <a href="#" data-toggle="modal" data-target=".team-details-{{$row->id}}">
-               <div class="member pt-4 pb-4 shadow-lg  rounded">
-                  <div class="member-image">
-                     @if($row->thumbnail)
-                     <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $row->thumbnail) }}" alt="">
-                     @else
-                   <img src="{{asset('themes-assets')}}/images/default.png" alt="" >
-                     @endif
-                  </div>
-                  <div class="member-content">
-                     <h1 class="h6 font-weight-bold mt-0 mb-0">{{$row->title}}</h1>
-                     <span class="mt-0 mb-0 text-secondary">{{$row->sub_title}}</span>
-                  </div>
-               </div>
-            </a>
-         </div>
-          @endforeach
-         <!--  -->
-          <!--  -->
-          @foreach($associated_posts->slice(5, 6) as $row)
-         <div class="col-lg-4 col-md-6  mb-5">
-            <a href="#" data-toggle="modal" data-target=".team-details-{{$row->id}}">
-               <div class="member pt-4 pb-4 shadow-lg  rounded">
-                  <div class="member-image">
-                    @if($row->thumbnail)
-                     <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $row->thumbnail) }}" alt="">
-                     @else
-                   <img src="{{asset('themes-assets')}}/images/default.png" alt="" >
-                     @endif
-                  </div>
-                  <div class="member-content">
-                      <h1 class="h6 font-weight-bold mt-0 mb-0">{{$row->title}}</h1>
-                     <span class="mt-0 mb-0 text-secondary">{{$row->sub_title}}</span>
-                  </div>
-               </div>
-            </a>
-         </div>
-          @endforeach
-         <!--  -->
-        
-      </div>
-      @endif
-      <!-- member -->
-   </div>
-</section>
-<!-- section end -->
-<!-- modal team details  -->
-@foreach($associated_posts as $row)
-<div class="modal fade team-details-{{$row->id}}"  tabindex="-1" role="dialog"   aria-hidden="true">
-   <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
+    <!-- banner -->
+    <section class="uk-cover-container  uk-position-relative uk-flex uk-flex-middle uk-background-norepeat uk-background-cover"
+             uk-parallax="bgx: 80, 80 ;bgy: -50, -200"   style="background:url({{asset('uploads/original/'.$data->banner)}});">
+        <div class="uk-overlay-primary  uk-position-cover "></div>
+        <div class="uk-home-banner uk-width-1-1 uk-position-z-index">
+            <div class="uk-container uk-position-relative text-white uk-flex-middle uk-flex"
+                 uk-height-viewport="expand: true; min-height: 400;">
+                <div class="uk-width-1-1">
+                    <div class="uk-grid uk-flex-middle" uk-grid uk-scrollspy="cls: uk-animation-slide-top-small; target:div, h1, p, a;  delay: 100; repeat: false;">
+                        <div class="uk-width-1-2@l uk-width-1-1" >
+                            <h1 class="f-18 f-w-600 text-white uk-margin-remove">Hospital</h1>
+                            <h1 class="f-30 f-w-600 text-white uk-margin-small">{{$data->post_title}}</h1>
 
-         <div class="modal-body p-0 modal-team-body">
-           
-            <div class="member-image-details mt-3 mb-3  ">
-               @if($row->thumbnail)
-                     <img src="{{ asset(env('PUBLIC_PATH').'uploads/medium/' . $row->thumbnail) }}" alt="">
-                     @else
-                   <img src="{{asset('themes-assets')}}/images/default.png" alt="" >
-                     @endif
+                        </div>
+                        <div class="uk-width-1-2@l uk-width-1-1 uk-text-right@l">
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="modal-team-details">
-               <div class="member-content-details pt-4 text-center mb-2">
-                  <h1 class="h5 mt-0 mb-1 font-weight-bold">{{$row->title}}</h1>
-                  <span class="mt-0 mb-0  font-weight-bold">{{$row->sub_title}}</span>
-               </div>
-               <div class="text-center">
-                {!!$row->brief!!}
-                  <hr>
-                  <button type="button" class="btn btn-white" data-dismiss="modal"><i class="fa fa-close"></i></button>
-               </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+    <!-- end banner -->
 
-               
+    <!-- section -->
+    <section class="uk-section bg-white">
+        <div class="uk-container ">
+            <div class="uk-grid-large  uk-child-width-1-3@m uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-slide-top-small; target:div;  delay: 20; repeat: false;">
+                <!--  -->
+                @foreach($associated_posts as $value)
+                <div>
+                    <div class="uk-border-rounded uk-overflow-hidden uk-text-center bg-white uk-box-shadow-large">
+                        <div class="uk-member-holder">
+                            <div class="uk-member-img"> <img src="{{asset('uploads/original/' . $value->thumbnail)}}" class="uk-border-circle" alt=""> </div>
+                            <h1 class="uk-h4 text-primary uk-margin-remove uk-f-w-600">{{$value->title}}</h1>
+                            <h2 class="uk-h5 uk-display-block text-secondary  uk-margin-remove">{{$value->sub_title}}</h2>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+                <!--  -->
+
             </div>
+        </div>
 
-           
-         </div>
-          
-      </div>
-   </div>
-</div>
-@endforeach
-<!-- end modal team details  -->
+    </section>
+    <!-- section -->
 @endsection

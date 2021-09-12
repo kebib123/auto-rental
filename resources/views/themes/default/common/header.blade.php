@@ -82,7 +82,7 @@
                             </li>
                             @if ($navigations->count())
                                 @foreach ($navigations as $row)
-                                    @if (getposts($row->id)->count() > 0)
+                                        @if (getposts($row->id)->count() > 0)
                                         <li class="has_child">
                                             <a href="">{{$row->post_type}}</a>
                                             <ul class="submenu">

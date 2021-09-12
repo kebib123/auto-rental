@@ -69,7 +69,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                         <div class="section_title mb_60 text-center" data-aos="fade-up" data-aos-delay="100">
-                            <h2 class="title_text mb_15"><span>Our Vehicles</span></h2>
+                            <h2 class="title_text mb_15"><span>Vehicles Package</span></h2>
                         </div>
                     </div>
                 </div>
